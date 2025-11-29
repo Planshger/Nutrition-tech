@@ -1,0 +1,41 @@
+name: nutrition_tech
+description: "A new Flutter project."
+publish_to: 'none' 
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.9.0
+
+dependencies:
+  flutter:
+    sdk: flutter
+  #ui
+  cupertino_icons: ^1.0.8
+  # core
+  flutter_bloc: ^9.1.1
+  # di
+  get_it: ^8.2.0
+  injectable: ^2.5.2
+  # data
+  hive_ce: ^2.15.0
+  hive_ce_flutter: ^2.3.2
+  #http
+  dio: ^5.9.0
+
+flutter_localizations:
+    sdk: flutter
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  # codegen
+  hive_ce_generator: ^1.10.0
+  build_runner: ^2.9.0
+  analyzer: ^8.4.0
+  injectable_generator: ^2.9.0
+  # linter
+  flutter_lints: ^5.0.0
+
+flutter:
+  uses-material-design: true
+
