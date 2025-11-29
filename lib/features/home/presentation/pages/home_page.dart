@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:nutrition_tech/features/all_fruits/presentation/pages/fruits_page.dart';
 import 'package:nutrition_tech/features/favourites/presentation/pages/favourites_page.dart';
+import 'package:nutrition_tech/features/recipes/presentation/pages/recipes_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -16,7 +17,7 @@ class _HomePageState extends State<HomePage> {
       tabBar: CupertinoTabBar(
         activeColor: CupertinoColors.systemBlue,
         inactiveColor: CupertinoColors.systemGrey,
-        items: const [
+        items: [
           BottomNavigationBarItem(icon: Icon(CupertinoIcons.list_bullet), label: 'Фрукты'),
           BottomNavigationBarItem(icon: Icon(CupertinoIcons.star), activeIcon: Icon(CupertinoIcons.star_fill, color: CupertinoColors.systemYellow),label: 'Избранное'),
           BottomNavigationBarItem(icon: Icon(CupertinoIcons.book_solid), label: 'Рецепты'),
@@ -34,6 +35,12 @@ class _HomePageState extends State<HomePage> {
             return Builder(
               builder: (context) {
                 return const FavouritesPage();
+              },
+            );
+          case 2:
+            return Builder(
+              builder: (context) {
+                return const RecipesPage();
               },
             );
           default:

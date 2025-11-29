@@ -32,6 +32,22 @@ import 'package:nutrition_tech/features/all_fruits/domain/usecases/get_fruits.da
     as _i59;
 import 'package:nutrition_tech/features/all_fruits/presentation/bloc/fruits_bloc.dart'
     as _i539;
+import 'package:nutrition_tech/features/recipes/data/datasources/recipe_local_data_source.dart'
+    as _i734;
+import 'package:nutrition_tech/features/recipes/data/models/recipe_model.dart'
+    as _i77;
+import 'package:nutrition_tech/features/recipes/data/repositories/recipe_repository_impl.dart'
+    as _i604;
+import 'package:nutrition_tech/features/recipes/domain/repositories/recipe_repository.dart'
+    as _i583;
+import 'package:nutrition_tech/features/recipes/domain/usecases/add_recipe.dart'
+    as _i1022;
+import 'package:nutrition_tech/features/recipes/domain/usecases/delete_recipe.dart'
+    as _i905;
+import 'package:nutrition_tech/features/recipes/domain/usecases/get_recipes.dart'
+    as _i747;
+import 'package:nutrition_tech/features/recipes/presentation/bloc/recipes_bloc.dart'
+    as _i574;
 
 extension GetItInjectableX on _i174.GetIt {
   // initializes the registration of main-scope dependencies inside of GetIt
@@ -50,8 +66,15 @@ extension GetItInjectableX on _i174.GetIt {
       () => registerModule.favouritesBox,
       preResolve: true,
     );
+    await gh.lazySingletonAsync<_i919.Box<_i77.RecipeModel>>(
+      () => registerModule.recipesBox,
+      preResolve: true,
+    );
     gh.lazySingleton<_i574.FruitsRemoteDataSource>(
       () => _i574.FruitsRemoteDataSourceImpl(gh<_i361.Dio>()),
+    );
+    gh.lazySingleton<_i734.RecipeLocalDataSource>(
+      () => _i734.RecipeLocalDataSourceImpl(gh<_i919.Box<_i77.RecipeModel>>()),
     );
     gh.lazySingleton<_i487.FruitsLocalDataSource>(
       () => _i487.FruitsLocalDataSourceImpl(
@@ -65,6 +88,12 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i487.FruitsLocalDataSource>(),
       ),
     );
+    gh.factory<_i583.RecipeRepository>(
+      () => _i604.RecipeRepositoryImpl(
+        localDataSource: gh<_i734.RecipeLocalDataSource>(),
+        fruitsRepository: gh<_i344.FruitsRepository>(),
+      ),
+    );
     gh.factory<_i731.AddFavourites>(
       () => _i731.AddFavourites(gh<_i344.FruitsRepository>()),
     );
@@ -73,6 +102,22 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i59.GetFruits>(
       () => _i59.GetFruits(gh<_i344.FruitsRepository>()),
+    );
+    gh.factory<_i1022.AddRecipe>(
+      () => _i1022.AddRecipe(gh<_i583.RecipeRepository>()),
+    );
+    gh.factory<_i905.DeleteRecipe>(
+      () => _i905.DeleteRecipe(gh<_i583.RecipeRepository>()),
+    );
+    gh.factory<_i747.GetRecipes>(
+      () => _i747.GetRecipes(gh<_i583.RecipeRepository>()),
+    );
+    gh.factory<_i574.RecipesBloc>(
+      () => _i574.RecipesBloc(
+        getRecipes: gh<_i747.GetRecipes>(),
+        addRecipe: gh<_i1022.AddRecipe>(),
+        deleteRecipe: gh<_i905.DeleteRecipe>(),
+      ),
     );
     gh.factory<_i539.FruitsBloc>(
       () => _i539.FruitsBloc(

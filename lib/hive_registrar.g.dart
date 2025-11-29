@@ -4,15 +4,18 @@
 
 import 'package:hive_ce/hive.dart';
 import 'package:nutrition_tech/features/all_fruits/data/models/fruits_model.dart';
+import 'package:nutrition_tech/features/recipes/data/models/recipe_model.dart';
 
 extension HiveRegistrar on HiveInterface {
   void registerAdapters() {
     registerAdapter(FruitsModelAdapter());
+    registerAdapter(RecipeModelAdapter());
   }
 }
 
 extension IsolatedHiveRegistrar on IsolatedHiveInterface {
   void registerAdapters() {
     registerAdapter(FruitsModelAdapter());
+    registerAdapter(RecipeModelAdapter());
   }
 }
