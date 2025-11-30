@@ -24,4 +24,32 @@ class Fruits {
     required this.protein,
     this.isFavourite = false,
   });
+
+  Fruits copyWith({
+    String? name,
+    String? family,
+    int? id,
+    String? order,
+    String? genus,
+    int? calories,
+    double? fat,
+    double? sugar,
+    double? carbohydrates,
+    double? protein,
+    bool? isFavourite,
+  }) {
+    return Fruits(
+      name: name ?? this.name,
+      family: family ?? this.family,
+      id: id ?? this.id,
+      order: order ?? this.order,
+      genus: genus ?? this.genus,
+      calories: calories ?? this.calories,
+      fat: fat ?? this.fat,
+      sugar: sugar ?? this.sugar,
+      carbohydrates: carbohydrates ?? this.carbohydrates,
+      protein: protein ?? this.protein,
+      isFavourite: isFavourite ?? this.isFavourite,
+    );
+  }
 }

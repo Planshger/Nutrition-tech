@@ -6,6 +6,7 @@ import 'package:nutrition_tech/features/all_fruits/data/models/fruits_model.dart
 import 'package:nutrition_tech/features/recipes/data/models/recipe_model.dart';
 import 'package:nutrition_tech/features/all_fruits/presentation/bloc/fruits_bloc.dart';
 import 'package:nutrition_tech/features/home/presentation/pages/home_page.dart';
+import 'package:nutrition_tech/features/sorting/presentation/bloc/sorting_bloc.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -24,11 +25,12 @@ class MainApp extends StatelessWidget {
   
   @override
   Widget build(BuildContext context) {
-    return CupertinoApp(
-      home: BlocProvider(
-        create: (context) => injector<FruitsBloc>(),
-        child: const HomePage(),
-      ),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (context) => injector<FruitsBloc>()),
+        BlocProvider(create: (context) => injector<SortingBloc>()),
+      ],
+      child: const CupertinoApp(home: HomePage()),
     );
   }
 }

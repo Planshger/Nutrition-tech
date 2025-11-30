@@ -39,16 +39,26 @@ class FruitsBloc extends Bloc<FruitsEvent, FruitsState> {
   Future<void> _onAddFavourites(AddFavouritesEvent event, Emitter<FruitsState> emit) async {
     try {
       await addFavourites(event.fruitId);
-      add(LoadFruits());
+      final index = _fruits.indexWhere((f) => f.id == event.fruitId);
+      if (index != -1) {
+        final oldFruit = _fruits[index];
+        _fruits[index] = oldFruit.copyWith(isFavourite: !oldFruit.isFavourite);
+        emit(FruitsLoaded(List.from(_fruits)));
+      }
     } catch (e) {
       emit(FruitsError(e.toString()));
     }
   }
 
-  Future<void> _onRemoveFavourites(RemoveFavouritesEvent event, Emitter<FruitsState> emit) async {
+  Future<void> _onRemoveFavourites(RemoveFavouritesEvent event, Emitter<FruitsState> emit) async { 
     try {
       await addFavourites(event.fruitId);
-      add(LoadFruits());
+      final index = _fruits.indexWhere((f) => f.id == event.fruitId);
+      if (index != -1) {
+        final oldFruit = _fruits[index];
+        _fruits[index] = oldFruit.copyWith(isFavourite: !oldFruit.isFavourite);
+        emit(FruitsLoaded(List.from(_fruits)));
+      }
     } catch (e) {
       emit(FruitsError(e.toString()));
     }

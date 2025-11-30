@@ -48,6 +48,12 @@ import 'package:nutrition_tech/features/recipes/domain/usecases/get_recipes.dart
     as _i747;
 import 'package:nutrition_tech/features/recipes/presentation/bloc/recipes_bloc.dart'
     as _i574;
+import 'package:nutrition_tech/features/sorting/data/repositories/sorting_repository_impl.dart'
+    as _i507;
+import 'package:nutrition_tech/features/sorting/domain/repositories/sorting_repository.dart'
+    as _i1038;
+import 'package:nutrition_tech/features/sorting/presentation/bloc/sorting_bloc.dart'
+    as _i404;
 
 extension GetItInjectableX on _i174.GetIt {
   // initializes the registration of main-scope dependencies inside of GetIt
@@ -70,6 +76,7 @@ extension GetItInjectableX on _i174.GetIt {
       () => registerModule.recipesBox,
       preResolve: true,
     );
+    gh.factory<_i1038.SortingRepository>(() => _i507.SortingRepositoryImpl());
     gh.lazySingleton<_i574.FruitsRemoteDataSource>(
       () => _i574.FruitsRemoteDataSourceImpl(gh<_i361.Dio>()),
     );
@@ -81,6 +88,10 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i919.Box<_i187.FruitsModel>>(),
         gh<_i919.Box<int>>(),
       ),
+    );
+    gh.factory<_i404.SortingBloc>(
+      () =>
+          _i404.SortingBloc(sortingRepository: gh<_i1038.SortingRepository>()),
     );
     gh.factory<_i344.FruitsRepository>(
       () => _i1041.FruitsRepositoryImpl(

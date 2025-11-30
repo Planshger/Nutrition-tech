@@ -25,8 +25,7 @@ class FavouritesPage extends StatelessWidget {
           if (state is FruitsError) {
             return CupertinoPageScaffold(
               navigationBar: const CupertinoNavigationBar(middle: Text('Избранное')),
-              child: ErrorDisplay(
-                message: 'Не удалось загрузить избранное',
+              child: ErrorDisplay(message: 'Не удалось загрузить избранное',
                 onRetry: () => context.read<FruitsBloc>().add(LoadFruits()),
               ),
             );

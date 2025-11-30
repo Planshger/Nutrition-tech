@@ -16,9 +16,7 @@ class FavouritesTile extends StatelessWidget {
         child: Container(
           padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 12.0),
           decoration: BoxDecoration(
-            color: CupertinoTheme.of(context).brightness == Brightness.light
-                ? CupertinoColors.white
-                : CupertinoColors.secondarySystemGroupedBackground,
+            color: CupertinoTheme.of(context).brightness == Brightness.light ? CupertinoColors.white : CupertinoColors.secondarySystemGroupedBackground,
             borderRadius: BorderRadius.circular(12.0),
             border: Border.all(
               color: const Color.fromARGB(36, 12, 136, 140), 

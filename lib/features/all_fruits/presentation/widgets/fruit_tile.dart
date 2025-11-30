@@ -6,12 +6,7 @@ class FruitTile extends StatelessWidget {
   final Function(BuildContext)? onFavourites;
   final VoidCallback? onTap;
 
-  const FruitTile({
-    super.key,
-    required this.fruit,
-    this.onFavourites,
-    this.onTap,
-  });
+  const FruitTile({super.key, required this.fruit, this.onFavourites,this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -22,9 +17,7 @@ class FruitTile extends StatelessWidget {
         child: Container(
           padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 12.0),
           decoration: BoxDecoration(
-            color: CupertinoTheme.of(context).brightness == Brightness.light
-                ? CupertinoColors.white
-                : CupertinoColors.secondarySystemGroupedBackground,
+            color: CupertinoTheme.of(context).brightness == Brightness.light ? CupertinoColors.white : CupertinoColors.secondarySystemGroupedBackground,
             borderRadius: BorderRadius.circular(12.0),
             border: Border.all(
               color: CupertinoColors.separator.withOpacity(0.5),
@@ -70,9 +63,7 @@ class FruitTile extends StatelessWidget {
                   onPressed: () => onFavourites!(context),
                   child: Icon(
                     fruit.isFavourite ? CupertinoIcons.star_fill : CupertinoIcons.star,
-                    color: fruit.isFavourite
-                        ? CupertinoColors.systemYellow
-                        : CupertinoColors.systemGrey,
+                    color: fruit.isFavourite ? CupertinoColors.systemYellow : CupertinoColors.systemGrey,
                   ),
                 ),
             ],
